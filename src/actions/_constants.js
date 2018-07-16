@@ -1,1 +1,4 @@
 export const TEST_CHECK = 'TEST_CHECK'
+
+export const GET_NOTES_LIST_START = 'GET_NOTES_LIST_START'
+export const GET_NOTES_LIST_END = 'GET_NOTES_LIST_END'

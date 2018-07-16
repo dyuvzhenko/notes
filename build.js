@@ -9,4 +9,11 @@ const options = {
   ignore: false
 }
 
-packager(options).then(appPaths => console.log('Path of application: ', appPaths))
+packager(options)
+  .then(appPaths => {
+    const dataPath = path.resolve(__dirname, 'notebook-app-win32-x64', 'data')
+    if (!fs.existsSync(dataPath)) {
+      fs.mkdirSync(dataPath)
+    }
+    console.log('Path of application: ', appPaths)
+  })
