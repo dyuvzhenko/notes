@@ -12,7 +12,7 @@ export function notes(state = initialState, action = {}) {
   switch (action.type) {
     case GET_NOTES_LIST_START:
       return {
-        ...initialState,
+        ...state,
         pending: true
       }
     case GET_NOTES_LIST_END:

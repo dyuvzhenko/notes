@@ -1,7 +1,6 @@
-import { validNote, validLabelColors, validBackgroundColors } from './validData'
-import fs from 'fs'
+import { validLabelColors, validBackgroundColors } from './validData'
 
-export const createTestNote = () => {
+export const createExampleNote = () => {
   let testNote = {}
 
   /* Set Timestamps */
@@ -76,10 +75,5 @@ export const createTestNote = () => {
     return { ...column, cards }
   })
 
-  fs.writeFile(`./data/note-${time}.json`, JSON.stringify(testNote, null, 2), (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-  })
+  return testNote
 }

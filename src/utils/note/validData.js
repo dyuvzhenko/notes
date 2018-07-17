@@ -1,3 +1,5 @@
+/* Something like documentation */
+
 export const validBackgroundColors = [
   '#9ACD32',  // #9ACD32
   '#CD5C5C',  // IndianRed

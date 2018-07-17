@@ -7,5 +7,5 @@ import { getFileByName } from '../utils/files'
 
 export const getCurrentNote = (filename) => (dispatch) => {
   dispatch({ type: GET_CURRENT_NOTE_START })
-  dispatch({ type: GET_CURRENT_NOTE_END, data: getFileByName(filename) })
+  dispatch({ type: GET_CURRENT_NOTE_END, data: getFileByName(filename) }) /* here should be callback */
 }

@@ -1,11 +1,11 @@
 import path from 'path'
 import fs from 'fs'
 
-import { config, getTimeString } from '../utils/files'
 import {
   GET_NOTES_LIST_START,
   GET_NOTES_LIST_END
 } from './_constants'
+import { config, getFileByName, getTimeString } from '../utils/files'
 
 export const getNotesList = () => (dispatch) => {
   dispatch({ type: GET_NOTES_LIST_START })
@@ -13,6 +13,7 @@ export const getNotesList = () => (dispatch) => {
     const filenames = fs.readdirSync(config.pathToNotesData)
     const all = filenames.map((filename, index) => {
       const file = fs.readFileSync(path.join(config.pathToNotesData, filename), 'utf-8')
+      // const file = getFileByName(filename)
       let result = null
       try {
         const _result = JSON.parse(file)
