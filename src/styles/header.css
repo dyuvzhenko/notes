@@ -18,6 +18,23 @@
   color: black;
 }
 
+
+.left-btn > a[disabled] {
+  color: black;
+}
+
+.left-btn > a:hover[disabled] {
+  text-decoration: none;
+}
+
+.left-btn > a:visited {
+  text-decoration: none;
+}
+
+.left-btn > a:active {
+  text-decoration: none;
+}
+
 .title > span {
   color: rgba(176, 196, 222, 1.0);
   font-size: 26px;

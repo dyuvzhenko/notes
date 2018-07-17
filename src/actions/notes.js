@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 
-import { config } from '../utils/files'
+import { config, getTimeString } from '../utils/files'
 import {
   GET_NOTES_LIST_START,
   GET_NOTES_LIST_END
@@ -24,6 +24,7 @@ export const getNotesList = () => (dispatch) => {
       return {
         title: result === null ? null : result.data.title, /* title will be null, if data broken */
         color: result === null ? null : result.data.settings.color,
+        time: result === null ? null : getTimeString(filename),
         filename
       }
     })

@@ -1,0 +1,17 @@
+.home {
+  width: 100%;
+}
+
+.wrap {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.note-block {
+  width: 320px;
+  height: 90px;
+  margin: 10px auto;
+  background-color: #DCDCDC;
+  border: 3px solid #A9A9A9;
+  border-radius: 5px;
+}
