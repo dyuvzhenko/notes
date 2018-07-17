@@ -1,5 +1,5 @@
 export const validBackgroundColors = [
-  '#32CD32',  // LimeGreen
+  '#9ACD32',  // #9ACD32
   '#CD5C5C',  // IndianRed
   '#FF8C00',  // DarkOrange
   '#9370DB',  // MediumPurple

@@ -7,11 +7,29 @@
   margin: 0 auto;
 }
 
-.note-block {
+.home-note-block {
   width: 320px;
   height: 90px;
   margin: 10px auto;
+  cursor: pointer;
   background-color: #DCDCDC;
   border: 3px solid #A9A9A9;
   border-radius: 5px;
+}
+
+.home-note-block:hover {
+  box-shadow: 2px 2px 5px #B0C4DE;
+}
+
+.home-note-block > .title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.home-note-block > div > .title-error {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 5px;
+  color: red;
 }
