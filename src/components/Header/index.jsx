@@ -1,24 +1,31 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+// import { createTestNote } from '../utils/note/createTestNote'
+// createTestNote() // remove to home page (not header!)
 
 class Header extends Component {
   constructor(props) {
     super(props)
+    // console.log(props)
   }
 
   render() {
-    // показывать кнопку, если не главная стр
+    const { pathname } = this.props.router.location
     return (
       <div className="header">
         <div className="left-btn">
-          {false && <h3>На главную страницу</h3>}
+          <Link to={`/home`} disabled={pathname === '/home'}>На главную страницу</Link>
         </div>
         <div className="title">
-          <h3>{'Notebook'}</h3>
+          <span>Notes</span>
         </div>
       </div>
     )
   }
 }
 
+const mapStateToProps = (state) => ({ router: state.router })
 
-export default Header
+export default connect(mapStateToProps)(Header)

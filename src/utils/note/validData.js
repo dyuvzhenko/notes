@@ -1,11 +1,10 @@
 export const validBackgroundColors = [
-  'LimeGreen',  // #32CD32
-  'IndianRed',  // #CD5C5C
-  'DarkOrange',  // #FF8C00
-  'MediumPurple',  // #9370DB
-  'DarkSlateBlue',  // #483D8B
-  'Lavender'  // #E6E6FA
-  /* Еще бы */
+  '#32CD32',  // LimeGreen
+  '#CD5C5C',  // IndianRed
+  '#FF8C00',  // DarkOrange
+  '#9370DB',  // MediumPurple
+  '#483D8B',  // DarkSlateBlue
+  '#E6E6FA'  // Lavender
 ]
 
 export const validLabelColors = [

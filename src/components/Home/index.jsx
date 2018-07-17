@@ -18,7 +18,7 @@ class Home extends Component {
         {
           all.map((note, i) =>
             <div className="note-block" key={i}>
-              <Link to={`/note/${note.filename}`}>link to note with filename = note.filename</Link> {/*disabled link, if data broken*/}
+              <Link to={`/note/${note.filename}`}>link to note with filename = {note.filename}</Link> {/*disabled link, if data broken*/}
               <div>{note.title}</div>
               <div>{note.title === null && 'Data was broken. И фон такой грустный кароч'}</div>
               <div>{note.color}</div>

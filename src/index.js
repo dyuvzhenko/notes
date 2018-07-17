@@ -5,7 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
-import Wrapper from './components/wrapper'
+import Routes from './components/routes'
 
 import { getNotesList } from './actions/notes'
 import { store } from './utils/store'
@@ -17,7 +17,7 @@ store.dispatch(getNotesList())  // первичный осмотр всех ле
 
 ReactDOM.render(
   <Provider store={store}>
-    <Wrapper />
+    <Routes />
   </Provider>,
   document.getElementById('root')
 )
