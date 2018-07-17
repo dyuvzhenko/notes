@@ -1,0 +1,8 @@
+import path from 'path'
+import fs from 'fs'
+
+export const config = {
+  pathToNotesData: path.join(process.cwd(), 'data')
+}
+
+export const getFileByName = (filename) => JSON.parse(fs.readFileSync(path.join(config.pathToNotesData, filename), 'utf-8'))

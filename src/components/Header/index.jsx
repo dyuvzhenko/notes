@@ -6,9 +6,15 @@ class Header extends Component {
   }
 
   render() {
+    // показывать кнопку, если не главная стр
     return (
       <div className="header">
-        <h2>{'Header'}</h2>
+        <div className="left-btn">
+          {false && <h3>На главную страницу</h3>}
+        </div>
+        <div className="title">
+          <h3>{'Notebook'}</h3>
+        </div>
       </div>
     )
   }

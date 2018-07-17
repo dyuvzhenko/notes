@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-
-import {testCheck} from '../actions/test'
 
 import Header from './Header'
 import Routes from './routes'
@@ -9,11 +6,6 @@ import Routes from './routes'
 class Wrapper extends Component {
   constructor(props) {
     super(props)
-    console.log('Heyo! (Wrapper Component)')
-  }
-
-  componentWillMount() {
-    this.props.testCheck()
   }
 
   render() {
@@ -26,9 +18,4 @@ class Wrapper extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ test: state.test })
-const mapDispatchToProps = (dispatch) => ({
-  testCheck: () => dispatch(testCheck())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Wrapper)
+export default Wrapper

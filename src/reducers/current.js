@@ -1,25 +1,25 @@
 import {
-  GET_NOTES_LIST_START,
-  GET_NOTES_LIST_END
+  GET_CURRENT_NOTE_START,
+  GET_CURRENT_NOTE_END
 } from '../actions/_constants'
 
 const initialState = {
-  all: [],
+  data: [],
   pending: false
 }
 
-export function notes(state = initialState, action = {}) {
+export function current(state = initialState, action = {}) {
   switch (action.type) {
-    case GET_NOTES_LIST_START:
+    case GET_CURRENT_NOTE_START:
       return {
         ...initialState,
         pending: true
       }
-    case GET_NOTES_LIST_END:
+    case GET_CURRENT_NOTE_END:
       return {
         ...state,
         pending: false,
-        all: action.all
+        data: action.data
       }
     default:
       return state

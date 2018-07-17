@@ -2,13 +2,13 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
+import { current } from './current'
 import { notes } from './notes'
-import { test } from './test'
 
 const reducer = combineReducers({
   form: formReducer,
-  notes,
-  test
+  current,
+  notes
 })
 
 export default reducer

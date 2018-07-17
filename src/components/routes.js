@@ -9,7 +9,7 @@ import Note from './Note'
 
 const path = {
   home: '/home',
-  note: '/note/:id'
+  note: '/note/:filename'
 }
 
 history.push({ pathname: path.home })
