@@ -1,11 +1,22 @@
-body { /* normalize */
+/* normalize */
+html, body {
+  height: 100%;
+}
+
+body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
+/* base */
+#root {
+  height: 100%;
+}
+
 .wrapper {
   text-align: center;
+  height: 100%;
   width: 100%;
 }
 

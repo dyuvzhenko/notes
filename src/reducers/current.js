@@ -1,21 +1,24 @@
 import {
-  GET_CURRENT_NOTE_START,
-  GET_CURRENT_NOTE_END
+  RESET_STATE_CURRENT,
+  UPDATE_CURRENT_NOTE,
+  GET_CURRENT_NOTE
 } from '../actions/_constants'
 
 const initialState = {
   data: {},
-  pending: false
+  pending: true
 }
 
 export function current(state = initialState, action = {}) {
   switch (action.type) {
-    case GET_CURRENT_NOTE_START:
+    case RESET_STATE_CURRENT:
+      return initialState
+    case UPDATE_CURRENT_NOTE:
       return {
-        ...initialState,
-        pending: true
+        ...state,
+        data: action.data
       }
-    case GET_CURRENT_NOTE_END:
+    case GET_CURRENT_NOTE:
       return {
         ...state,
         pending: false,

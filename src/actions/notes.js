@@ -24,7 +24,7 @@ export const getNotesList = () => (dispatch) => {
       }
       return {
         title: result === null ? null : result.data.title, /* title will be null, if data broken */
-        color: result === null ? null : result.data.settings.color,
+        colorObj: result === null ? null : result.data.settings.colorObj,
         time: result === null ? null : getTimeString(filename),
         filename
       }

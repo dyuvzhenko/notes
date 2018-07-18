@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 
+import { defaultBackgroundColor } from '../../utils/note/validData'
 import { createExampleNote, createEmptyNote } from '../../actions/create'
 import { getNotesList } from '../../actions/notes'
 import { history } from '../../utils/history'
@@ -58,7 +59,7 @@ class Home extends Component {
           {all.map((note, i) =>
             <div className="col-6" key={i}>
               <div className="home-note-block"
-                style={{backgroundColor: note.color}}
+                style={{backgroundColor: note.colorObj.color !== null ? note.colorObj.color : defaultBackgroundColor}}
                 onClick={() => this.goToNotePage(note)}
                 disabled={note.title === null}
               >

@@ -4,7 +4,10 @@ export const createEmptyNote = () => ({
   'data': {
     'title': 'New note (empty)',
     'settings': {
-      'color': '',
+      'colorObj': {
+        'color': null,
+        'name': null
+      },
       'label-description': []
     },
     'columns': []

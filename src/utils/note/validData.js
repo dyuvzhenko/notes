@@ -1,30 +1,32 @@
 /* Something like documentation */
 
+export const defaultBackgroundColor = '#E6E6FA'
+
 export const validBackgroundColors = [
-  '#9ACD32',  // #9ACD32
-  '#CD5C5C',  // IndianRed
-  '#FF8C00',  // DarkOrange
-  '#9370DB',  // MediumPurple
-  '#483D8B',  // DarkSlateBlue
-  '#E6E6FA'  // Lavender
+  { color: '#9ACD32', name: 'YellowGreen' },
+  { color: '#CD5C5C', name: 'IndianRed' },
+  { color: '#FF8C00', name: 'DarkOrange' },
+  { color: '#9370DB', name: 'MediumPurple' },
+  { color: '#483D8B', name: 'DarkSlateBlue' },
+  { color: '#E6E6FA', name: 'Lavender' }
 ]
 
 export const validLabelColors = [
-  '#0000FF', // Blue
-  '#008000', // Green
-  '#FFFF00', // Yellow
-  '#FF0000' // Red
+  { color: '#0000FF', name: 'Blue' },
+  { color: '#008000', name: 'Green' },
+  { color: '#FFFF00', name: 'Yellow' },
+  { color: '#FF0000', name: 'Red' }
 ]
 
 export const validNote = {
   '_initDate': '',
   '_lastUpdate': '',
   'data': {
-    'title': '',
+    'title': validBackgroundColors[0],
     'settings': {
-      'color': '',
+      'colorObj': '',
       'label-description': [{
-        'color': validLabelColors[0], // like unique id
+        'colorObj': validLabelColors[0], // like unique id
         'description': ''
       }]
     },
