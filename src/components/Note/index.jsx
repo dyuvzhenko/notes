@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { DropdownButton, MenuItem } from 'react-bootstrap'
+import { DropdownButton, MenuItem, Button } from 'react-bootstrap'
 
+import Header from './Header'
 import ColumnsList from './ColumnsList'
-import { defaultBackgroundColor, validBackgroundColors } from '../../utils/note/validData'
 import { getCurrentNote, resetStateCurrent, changeBackgroundColor } from '../../actions/current'
 
 class Note extends Component {
@@ -28,26 +27,8 @@ class Note extends Component {
   render() {
     const { pending, data } = this.props.current
     return pending ? null : (
-      <div className="note" style={{backgroundColor: data.data.settings.colorObj.color !== null ? data.data.settings.colorObj.color : defaultBackgroundColor}}>
-        <div className="note-header">
-          <h3>{data.data.title}</h3>
-          <div className="note-change-color-btn">
-            <DropdownButton style={{backgroundColor: 'white', color: 'black'}}
-              title={'Change background color'}
-              id={`changeColorBtn`}
-              bsStyle={'primary'}
-            >
-              {validBackgroundColors.map((colorObj, i) =>
-                <MenuItem key={i} onClick={() => this.changeBackgroundColor(colorObj)}>
-                  {colorObj.name} <div className="note-header-color-example" style={{backgroundColor: colorObj.color}}></div>
-                </MenuItem>
-              )}
-            </DropdownButton>
-          </div>
-          <button>Удалить эту доску (подтверждение в модалке с требованием ввести слово pass)</button>
-        </div>
-
-        <br />
+      <div className="note" style={{ backgroundColor: data.data.settings.colorObj.color }}>
+        <Header title={data.data.title} changeBackgroundColor={this.changeBackgroundColor} />
         <ColumnsList columns={data.data.columns} />
       </div>
     )

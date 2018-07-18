@@ -10,3 +10,13 @@
   float: right;
   margin-top: 3px;
 }
+
+.note-header-right-panel {
+  position: absolute;
+  right: 10px;
+  top: 64px;
+}
+
+.note-header-right-panel > button {
+  margin-left: 10px;
+}
