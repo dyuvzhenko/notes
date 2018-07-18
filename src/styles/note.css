@@ -3,3 +3,10 @@
   width: 100%;
   height: calc(100% - 48px); /* 48px = header height */
 }
+
+.note-header-color-example {
+  width: 15px;
+  height: 15px;
+  float: right;
+  margin-top: 3px;
+}

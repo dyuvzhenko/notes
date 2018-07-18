@@ -5,7 +5,7 @@ import {
 } from '../actions/_constants'
 
 const initialState = {
-  data: {},
+  data: null,
   processRewrite: false, // TODO: block all operations, if file is rewrited
   pending: true
 }

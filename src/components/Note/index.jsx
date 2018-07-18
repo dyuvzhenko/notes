@@ -38,7 +38,9 @@ class Note extends Component {
               bsStyle={'primary'}
             >
               {validBackgroundColors.map((colorObj, i) =>
-                <MenuItem key={i} onClick={() => this.changeBackgroundColor(colorObj)}>{colorObj.name}</MenuItem>
+                <MenuItem key={i} onClick={() => this.changeBackgroundColor(colorObj)}>
+                  {colorObj.name} <div className="note-header-color-example" style={{backgroundColor: colorObj.color}}></div>
+                </MenuItem>
               )}
             </DropdownButton>
           </div>

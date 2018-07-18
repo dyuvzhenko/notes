@@ -4,38 +4,42 @@
   height: 48px;
 }
 
-.left-btn {
+.header > .left-btn {
   position: absolute;
   top: 15px;
   left: 5px;
 }
 
-.left-btn > a {
+.header > .left-btn > a {
   color: rgba(176, 196, 222, 1.0);
 }
 
-.left-btn > a:hover {
+.header > .left-btn > a:hover {
   color: black;
 }
 
-
-.left-btn > a[disabled] {
+.header > .left-btn > a[disabled] {
   color: black;
 }
 
-.left-btn > a:hover[disabled] {
+.header > .left-btn > a:hover[disabled] {
   text-decoration: none;
 }
 
-.left-btn > a:visited {
+.header > .left-btn > a:visited {
   text-decoration: none;
 }
 
-.left-btn > a:active {
+.header > .left-btn > a:active {
   text-decoration: none;
 }
 
-.title > span {
+.header > .title {
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.header > .title > span {
   color: rgba(176, 196, 222, 1.0);
   font-size: 26px;
   line-height: 48px;

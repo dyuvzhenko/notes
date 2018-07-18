@@ -1,6 +1,6 @@
 /* Something like documentation */
 
-export const defaultBackgroundColor = '#E6E6FA'
+export const defaultBackgroundColor = '#E6E6FA' /* deprecated? */
 
 export const validBackgroundColors = [
   { color: '#9ACD32', name: 'YellowGreen' },
@@ -8,7 +8,7 @@ export const validBackgroundColors = [
   { color: '#FF8C00', name: 'DarkOrange' },
   { color: '#9370DB', name: 'MediumPurple' },
   { color: '#483D8B', name: 'DarkSlateBlue' },
-  { color: '#E6E6FA', name: 'Lavender' }
+  { color: '#1E90FF', name: 'DodgerBlue' }
 ]
 
 export const validLabelColors = [
@@ -22,9 +22,9 @@ export const validNote = {
   '_initDate': '',
   '_lastUpdate': '',
   'data': {
-    'title': validBackgroundColors[0],
+    'title': '',
     'settings': {
-      'colorObj': '',
+      'colorObj': validBackgroundColors[0],
       'label-description': [{
         'colorObj': validLabelColors[0], // like unique id
         'description': ''
