@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 
-class Column extends Component {
+import Column from './Column'
+
+class ColumnsList extends Component {
   constructor(props) {
     super(props)
     // this.changeBackgroundColor = this.changeBackgroundColor.bind(this)
@@ -16,11 +18,11 @@ class Column extends Component {
     return (
       <div className="note-columns-list">
         {columns.map((column, i) =>
-          <div>Column {i}</div>
+          <Column key={i} column={column} />
         )}
       </div>
     )
   }
 }
 
-export default Column
+export default ColumnsList

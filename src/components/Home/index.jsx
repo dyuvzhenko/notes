@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap'
 
 import { defaultBackgroundColor } from '../../utils/note/validData'
 import { createExampleNote, createEmptyNote } from '../../actions/create'
-import { getNotesList } from '../../actions/notes'
+import { getNotesList, resetStateNotes } from '../../actions/notes'
 import { history } from '../../utils/history'
 
 class Home extends Component {
@@ -15,8 +15,16 @@ class Home extends Component {
     this.createEmptyNote = this.createEmptyNote.bind(this)
     this.createExampleNote = this.createExampleNote.bind(this)
     this.state = {
-      listShouldBeUpdated: true
+      listShouldBeUpdated: false
     }
+  }
+
+  componentWillMount() {
+    this.props.getNotesList()
+  }
+
+  componentWillUnmount() {
+    this.props.resetStateNotes()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -86,6 +94,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  resetStateNotes: () => dispatch(resetStateNotes()),
   createExampleNote: () => dispatch(createExampleNote()),
   createEmptyNote: () => dispatch(createEmptyNote()),
   getNotesList: () => dispatch(getNotesList())

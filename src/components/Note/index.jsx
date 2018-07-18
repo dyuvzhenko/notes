@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 
-import Column from './Column'
+import ColumnsList from './ColumnsList'
 import { defaultBackgroundColor, validBackgroundColors } from '../../utils/note/validData'
 import { getCurrentNote, resetStateCurrent, changeBackgroundColor } from '../../actions/current'
 
@@ -44,13 +44,9 @@ class Note extends Component {
           </div>
           <button>Удалить эту доску (подтверждение в модалке с требованием ввести слово pass)</button>
         </div>
-        <br />
 
-        <div className="note-columns-list">
-          {data.data.columns.map((column, i) =>
-            <Column key={i} column={column} />
-          )}
-        </div>
+        <br />
+        <ColumnsList columns={data.data.columns} />
       </div>
     )
   }

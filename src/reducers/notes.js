@@ -1,4 +1,5 @@
 import {
+  RESET_STATE_NOTES,
   GET_NOTES_LIST_START,
   GET_NOTES_LIST_END
 } from '../actions/_constants'
@@ -10,6 +11,8 @@ const initialState = {
 
 export function notes(state = initialState, action = {}) {
   switch (action.type) {
+    case RESET_STATE_NOTES:
+      return initialState
     case GET_NOTES_LIST_START:
       return {
         ...state,
