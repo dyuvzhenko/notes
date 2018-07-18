@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   data: {},
+  processRewrite: false, // TODO: block all operations, if file is rewrited
   pending: true
 }
 
