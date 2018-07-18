@@ -34,9 +34,9 @@
 
 .note-header > .note-header-active-input-title {
   /* Should looks like input */
-  background-color: inherit;
+  background-color: white;
   opacity: 0.8;
-  border: 0;
+  border: 2px solid black;
   cursor: pointer;
   font-size: 23px;
   font-weight: 600;

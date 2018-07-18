@@ -1,12 +1,9 @@
-
-## What is this repository for?
-
-Small copy of trello
-
 ### Steps for development:
 
 1. Npm run build
 2. Npm run electron
+
+or **Npm run _start**
 
 ### Steps for build:
 

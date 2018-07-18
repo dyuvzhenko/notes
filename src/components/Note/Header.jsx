@@ -26,8 +26,12 @@ class Header extends Component {
 
   onKeyPress(e) {
     if (e.key === 'Enter') {
-      this.activateInput(false)
-      this.props.changeTitle(this.state.titleValue)
+      if (this.state.titleValue === '') {
+        e.preventDefault()
+      } else {
+        this.activateInput(false)
+        this.props.changeTitle(this.state.titleValue)
+      }
     }
   }
 
