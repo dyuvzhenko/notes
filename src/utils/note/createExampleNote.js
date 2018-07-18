@@ -1,7 +1,6 @@
-import { validNote, validLabelColors, validBackgroundColors } from './validData'
-import fs from 'fs'
+import { validLabelColors, validBackgroundColors } from './validData'
 
-export const createTestNote = () => {
+export const createExampleNote = () => {
   let testNote = {}
 
   /* Set Timestamps */
@@ -15,9 +14,10 @@ export const createTestNote = () => {
 
   /* Set settings */
   testNote.data['settings'] = {
-    'color': validBackgroundColors[Math.floor(Math.random() * validBackgroundColors.length)],
-    'label-description': validLabelColors.map((color, i) => ({
-      description: `description #${i + 1}`, color
+    // 'color': validBackgroundColors[Math.floor(Math.random() * validBackgroundColors.length)],
+    'colorObj': validBackgroundColors[Math.floor(Math.random() * validBackgroundColors.length)],
+    'label-description': validLabelColors.map((colorObj, i) => ({
+      description: `description #${i + 1}`, colorObj
     }))
   }
 
@@ -76,10 +76,5 @@ export const createTestNote = () => {
     return { ...column, cards }
   })
 
-  fs.writeFile(`./data/note-${time}.json`, JSON.stringify(testNote, null, 2), (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-  })
+  return testNote
 }

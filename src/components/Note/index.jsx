@@ -1,20 +1,56 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { DropdownButton, MenuItem, Button } from 'react-bootstrap'
+
+import Header from './Header'
+import ColumnsList from './ColumnsList'
+import { getCurrentNote, resetStateCurrent, changeBackgroundColor, changeTitle } from '../../actions/current'
 
 class Note extends Component {
   constructor(props) {
     super(props)
+    this.changeBackgroundColor = this.changeBackgroundColor.bind(this)
+    this.changeTitle = this.changeTitle.bind(this)
+  }
+
+  componentWillMount() {
+    this.props.getCurrentNote(this.props.match.params.filename)
+  }
+
+  componentWillUnmount() {
+    this.props.resetStateCurrent()
+  }
+
+  changeBackgroundColor(colorObj) {
+    this.props.changeBackgroundColor(colorObj)
+  }
+
+  changeTitle(title) {
+    this.props.changeTitle(title)
   }
 
   render() {
-    return (
-      <div>
-        <h4>Page with note id = {this.props.match.params.id}</h4>
-        <br />
-        <Link to="/home">Back to home</Link>
+    const { pending, data } = this.props.current
+    return pending ? null : (
+      <div className="note" style={{ backgroundColor: data.data.settings.colorObj.color }}>
+        <Header
+          title={data.data.title}
+          changeTitle={this.changeTitle}
+          changeBackgroundColor={this.changeBackgroundColor}
+        />
+        <ColumnsList columns={data.data.columns} />
       </div>
     )
   }
 }
 
-export default Note
+const mapStateToProps = (state) => ({ current: state.current })
+
+const mapDispatchToProps = (dispatch) => ({
+  resetStateCurrent: () => dispatch(resetStateCurrent()),
+  getCurrentNote: (filename) => dispatch(getCurrentNote(filename)),
+  changeBackgroundColor: (colorObj) => dispatch(changeBackgroundColor(colorObj)),
+  changeTitle: (title) => dispatch(changeTitle(title))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Note)

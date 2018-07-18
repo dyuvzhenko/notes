@@ -4,12 +4,13 @@ import { ConnectedRouter } from 'connected-react-router'
 
 import { history } from '../utils/history'
 
+import Header from './Header'
 import Home from './Home'
 import Note from './Note'
 
 const path = {
   home: '/home',
-  note: '/note/:id'
+  note: '/note/:filename'
 }
 
 history.push({ pathname: path.home })
@@ -18,10 +19,13 @@ class Routes extends Component {
   render() {
     return (
       <ConnectedRouter history={history}>
-        <Switch>
-          <Route exact path={path.home} component={Home} />
-          <Route exact path={path.note} component={Note} />
-        </Switch>
+        <div className="wrapper">
+          <Header />
+          <Switch>
+            <Route exact path={path.home} component={Home} />
+            <Route exact path={path.note} component={Note} />
+          </Switch>
+        </div>
       </ConnectedRouter>
     )
   }

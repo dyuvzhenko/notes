@@ -1,0 +1,45 @@
+.note {
+  display: inline-block;
+  width: 100%;
+  height: calc(100% - 48px); /* 48px = header height */
+}
+
+.note-header-color-example {
+  width: 15px;
+  height: 15px;
+  float: right;
+  margin-top: 3px;
+}
+
+.note-header-right-panel {
+  position: absolute;
+  right: 10px;
+  top: 64px;
+}
+
+.note-header-right-panel > button {
+  margin-left: 10px;
+}
+
+.note-header > .note-header-inactive-input-title {
+  /* Should looks like normal title */
+  background-color: inherit;
+  border: 0;
+  cursor: pointer;
+  font-size: 23px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.note-header > .note-header-active-input-title {
+  /* Should looks like input */
+  background-color: inherit;
+  opacity: 0.8;
+  border: 0;
+  cursor: pointer;
+  font-size: 23px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 20px;
+}
