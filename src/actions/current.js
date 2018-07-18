@@ -25,3 +25,13 @@ export const changeBackgroundColor = (colorObj) => (dispatch, getState) => {
   }
   rewriteFile(note, (file) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file }))
 }
+
+export const changeTitle = (title) => (dispatch, getState) => {
+  const file = getState().current.data
+  const note = {...file,
+    data: {...file.data,
+      title
+    }
+  }
+  rewriteFile(note, (file) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file }))
+}
