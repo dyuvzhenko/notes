@@ -4,7 +4,7 @@ import {
 } from '../actions/_constants'
 
 const initialState = {
-  data: [],
+  data: {},
   pending: false
 }
 

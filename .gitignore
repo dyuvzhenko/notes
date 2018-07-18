@@ -17,4 +17,4 @@ npm-debug.log
 .idea
 # my files
 notebook-app-*
-data
+app-data

@@ -11,7 +11,7 @@ const options = {
 
 packager(options)
   .then(appPaths => {
-    const dataPath = path.resolve(__dirname, 'notebook-app-win32-x64', 'data')
+    const dataPath = path.resolve(__dirname, 'notebook-app-win32-x64', 'app-data')
     if (!fs.existsSync(dataPath)) {
       fs.mkdirSync(dataPath)
     }

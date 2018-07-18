@@ -10,7 +10,7 @@ import { createEmptyNote as _createEmptyNote } from '../utils/note/createEmptyNo
 
 export const createExampleNote = () => (dispatch) => {
   const note = _createExampleNote()
-  fs.writeFile(`./data/note-${note['_initDate']}.json`, JSON.stringify(note, null, 2), (err) => {
+  fs.writeFile(`./app-data/note-${note['_initDate']}.json`, JSON.stringify(note, null, 2), (err) => {
     if (!err) {
       dispatch({ type: CREATE_EXAMPLE_NOTE })
     }
@@ -19,7 +19,7 @@ export const createExampleNote = () => (dispatch) => {
 
 export const createEmptyNote = () => (dispatch) => {
   const note = _createEmptyNote()
-  fs.writeFile(`./data/note-${note['_initDate']}.json`, JSON.stringify(note, null, 2), (err) => {
+  fs.writeFile(`./app-data/note-${note['_initDate']}.json`, JSON.stringify(note, null, 2), (err) => {
     if (!err) {
       dispatch({ type: CREATE_EMPTY_NOTE })
     }
