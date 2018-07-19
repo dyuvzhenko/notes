@@ -21,8 +21,13 @@
   margin-left: 10px;
 }
 
+.note-header {
+  height: 54px;
+}
+
 .note-header > .note-header-inactive-input-title {
   /* Should looks like normal title */
+  float: left;
   background-color: inherit;
   border: 0;
   cursor: pointer;
@@ -34,6 +39,7 @@
 
 .note-header > .note-header-active-input-title {
   /* Should looks like input */
+  float: left;
   background-color: white;
   opacity: 0.8;
   border: 2px solid black;
@@ -42,6 +48,7 @@
   font-weight: 600;
   text-align: center;
   margin-top: 20px;
+  margin-left: 40px;
 }
 
 .note-columns-list {
@@ -81,5 +88,5 @@
   border: 3px solid #DCDCDC;
   background-color: #DCDCDC;
   border-radius: 5px;
-  margin: 10px;
+  margin: 5px;
 }
