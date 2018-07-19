@@ -14,11 +14,12 @@ export const rewriteFile = (file, callback) => {
   const oldTimeStamp = newFile['_lastUpdate']
   const newTimeStamp = Date.now()
   newFile['_lastUpdate'] = newTimeStamp
-  fs.writeFile(`./app-data/note-${newTimeStamp}.json`, JSON.stringify(newFile, null, 2), (err) => {
+  const newFileName = `note-${newTimeStamp}.json`
+  fs.writeFile(`./app-data/${newFileName}`, JSON.stringify(newFile, null, 2), (err) => {
     if (!err) {
       fs.unlink(`./app-data/note-${oldTimeStamp}.json`, (err) => {
         if (!err) {
-          callback(newFile)
+          callback(newFile, newFileName)
         }
       })
     }
@@ -26,4 +27,4 @@ export const rewriteFile = (file, callback) => {
 }
 
 export const removeFile = (filename, callback) =>
-  fs.unlink(`./app-data/${filename}`, (err) => callback(err, !err))
+  fs.unlink(`./app-data/${filename}`, (err) => callback(err))

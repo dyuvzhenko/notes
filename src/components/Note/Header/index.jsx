@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { DropdownButton, MenuItem, Modal, Button } from 'react-bootstrap'
 
-import { validBackgroundColors } from '../../utils/note/validData'
-import { removeFile } from '../../utils/files'
-import { history } from '../../utils/history'
+import { validBackgroundColors } from '../../../utils/note/validData'
 
 class Header extends Component {
   constructor(props) {
@@ -13,10 +11,8 @@ class Header extends Component {
     this.activateInput = this.activateInput.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
     this.onKeyPress = this.onKeyPress.bind(this)
-    this.removeNote = this.removeNote.bind(this)
     this.requiredConfirmString = 'confirm'
     this.state = {
-      errMsg: null,
       confirmString: '',
       isNoteRemoveModalOpen: false,
       titleValue: props.title || '',
@@ -41,16 +37,6 @@ class Header extends Component {
     this.setState({ confirmString: e.target.value })
   }
 
-  removeNote() {
-    removeFile(this.props.currentFilename, (err, res) => {
-      if (res) {
-        history.push({ pathname: '/home' })
-      } else {
-        this.setState({ errMsg: JSON.stringify(err) })
-      }
-    })
-  }
-
   onKeyPress(e) {
     if (e.key === 'Enter') {
       if (this.state.titleValue === '') {
@@ -63,8 +49,8 @@ class Header extends Component {
   }
 
   render() {
-    const { changeBackgroundColor, currentBackgroundColor } = this.props
-    const { titleValue, titleIsActivated, confirmString, isNoteRemoveModalOpen, errMsg } = this.state
+    const { changeBackgroundColor, currentBackgroundColor, removeNoteErrorMsg } = this.props
+    const { titleValue, titleIsActivated, confirmString, isNoteRemoveModalOpen } = this.state
     return (
       <div className="note-header">
         <input
@@ -91,7 +77,7 @@ class Header extends Component {
               </MenuItem>
             )}
           </DropdownButton>
-          <Button onClick={() => this.toggleModal(true)}>Remove this Note</Button>
+          <button className="btn note-remove-btn" onClick={() => this.toggleModal(true)}>Remove this Note</button>
           <Modal show={isNoteRemoveModalOpen} onHide={() => this.toggleModal(false)}>
             <Modal.Header closeButton>
               <Modal.Title>Confirm action</Modal.Title>
@@ -101,12 +87,12 @@ class Header extends Component {
                 <h4>Enter string "confirm" to field</h4>
                 <input onChange={this.changeConfirmString} value={confirmString} />
               </div>
-              {errMsg}
+              {removeNoteErrorMsg}
             </Modal.Body>
             <Modal.Footer>
               <Button
                 bsStyle="danger"
-                onClick={this.removeNote}
+                onClick={this.props.removeNote}
                 disabled={confirmString !== this.requiredConfirmString}
               >Delete Note
               </Button>

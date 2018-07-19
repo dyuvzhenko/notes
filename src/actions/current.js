@@ -3,15 +3,29 @@ import fs from 'fs'
 import {
   RESET_STATE_CURRENT,
   UPDATE_CURRENT_NOTE,
-  GET_CURRENT_NOTE
+  GET_CURRENT_NOTE,
+  REMOVE_NOTE
 } from './_constants'
 
-import { getFileByName, rewriteFile } from '../utils/files'
+import { history } from '../utils/history'
+import { getFileByName, rewriteFile, removeFile } from '../utils/files'
 
 export const resetStateCurrent = () => (dispatch) => dispatch({ type: RESET_STATE_CURRENT })
 
 export const getCurrentNote = (filename) => (dispatch) => {
-  dispatch({ type: GET_CURRENT_NOTE, data: getFileByName(filename) }) /* here should be callback */
+  dispatch({ type: GET_CURRENT_NOTE, data: getFileByName(filename), filename })
+}
+
+export const removeNote = () => (dispatch, getState) => {
+  const filename = getState().current.filename
+  removeFile(filename, (error) => {
+    if (!error) {
+      history.push({ pathname: '/home' })
+      dispatch({ type: REMOVE_NOTE, error })
+    } else {
+      dispatch({ type: REMOVE_NOTE, error })
+    }
+  })
 }
 
 export const changeBackgroundColor = (colorObj) => (dispatch, getState) => {
@@ -23,7 +37,7 @@ export const changeBackgroundColor = (colorObj) => (dispatch, getState) => {
       }
     }
   }
-  rewriteFile(note, (file) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file }))
+  rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
 }
 
 export const changeTitle = (title) => (dispatch, getState) => {
@@ -33,5 +47,5 @@ export const changeTitle = (title) => (dispatch, getState) => {
       title
     }
   }
-  rewriteFile(note, (file) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file }))
+  rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
 }

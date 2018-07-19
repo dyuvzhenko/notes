@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 
-import CardPreview from './Card/CardPreview'
-// import CardView from './Card/CardView'
+import CardPreview from '../Card/CardPreview'
+// import CardView from '../Card/CardView'
 
 class Column extends Component {
   constructor(props) { // {true && <Card />}
