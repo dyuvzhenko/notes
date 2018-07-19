@@ -34,9 +34,11 @@ class Note extends Component {
     return pending ? null : (
       <div className="note" style={{ backgroundColor: data.data.settings.colorObj.color }}>
         <Header
-          title={data.data.title}
           changeTitle={this.changeTitle}
           changeBackgroundColor={this.changeBackgroundColor}
+          currentBackgroundColor={data.data.settings.colorObj.color}
+          currentFilename={this.props.match.params.filename}
+          title={data.data.title}
         />
         <ColumnsList columns={data.data.columns} />
       </div>

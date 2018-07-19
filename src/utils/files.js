@@ -24,3 +24,6 @@ export const rewriteFile = (file, callback) => {
     }
   })
 }
+
+export const removeFile = (filename, callback) =>
+  fs.unlink(`./app-data/${filename}`, (err) => callback(err, !err))

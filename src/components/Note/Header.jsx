@@ -1,15 +1,24 @@
 import React, { Component } from 'react'
-import { DropdownButton, MenuItem, Button } from 'react-bootstrap'
+import { DropdownButton, MenuItem, Modal, Button } from 'react-bootstrap'
 
 import { validBackgroundColors } from '../../utils/note/validData'
+import { removeFile } from '../../utils/files'
+import { history } from '../../utils/history'
 
 class Header extends Component {
   constructor(props) {
     super(props)
+    this.changeConfirmString = this.changeConfirmString.bind(this)
     this.onChangeTitle = this.onChangeTitle.bind(this)
     this.activateInput = this.activateInput.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
     this.onKeyPress = this.onKeyPress.bind(this)
+    this.removeNote = this.removeNote.bind(this)
+    this.requiredConfirmString = 'confirm'
     this.state = {
+      errMsg: null,
+      confirmString: '',
+      isNoteRemoveModalOpen: false,
       titleValue: props.title || '',
       titleIsActivated: false
     }
@@ -24,6 +33,24 @@ class Header extends Component {
     !isActivated && this.inputTitle.blur()
   }
 
+  toggleModal(isOpen) {
+    this.setState({ isNoteRemoveModalOpen: isOpen })
+  }
+
+  changeConfirmString(e) {
+    this.setState({ confirmString: e.target.value })
+  }
+
+  removeNote() {
+    removeFile(this.props.currentFilename, (err, res) => {
+      if (res) {
+        history.push({ pathname: '/home' })
+      } else {
+        this.setState({ errMsg: JSON.stringify(err) })
+      }
+    })
+  }
+
   onKeyPress(e) {
     if (e.key === 'Enter') {
       if (this.state.titleValue === '') {
@@ -36,8 +63,8 @@ class Header extends Component {
   }
 
   render() {
-    const { changeBackgroundColor, title } = this.props
-    const { titleValue, titleIsActivated } = this.state
+    const { changeBackgroundColor, currentBackgroundColor } = this.props
+    const { titleValue, titleIsActivated, confirmString, isNoteRemoveModalOpen, errMsg } = this.state
     return (
       <div className="note-header">
         <input
@@ -59,13 +86,33 @@ class Header extends Component {
             bsStyle={'primary'}
           >
             {validBackgroundColors.map((colorObj, i) =>
-              <MenuItem key={i} onClick={() => changeBackgroundColor(colorObj)}>
+              <MenuItem key={i} onClick={() => changeBackgroundColor(colorObj)} style={{backgroundColor: currentBackgroundColor === colorObj.color ? '#e0e0e0' : 'white'}}>
                 {colorObj.name} <div className="note-header-color-example" style={{backgroundColor: colorObj.color}}></div>
               </MenuItem>
             )}
           </DropdownButton>
-          <Button>Удалить эту доску</Button>
-          {/* (подтверждение в модалке с требованием ввести слово pass или confirm) */}
+          <Button onClick={() => this.toggleModal(true)}>Remove this Note</Button>
+          <Modal show={isNoteRemoveModalOpen} onHide={() => this.toggleModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Confirm action</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div>
+                <h4>Enter string "confirm" to field</h4>
+                <input onChange={this.changeConfirmString} value={confirmString} />
+              </div>
+              {errMsg}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                bsStyle="danger"
+                onClick={this.removeNote}
+                disabled={confirmString !== this.requiredConfirmString}
+              >Delete Note
+              </Button>
+              <Button onClick={() => this.toggleModal(false)}>Close</Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
     )
