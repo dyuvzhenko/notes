@@ -43,3 +43,20 @@
   text-align: center;
   margin-top: 20px;
 }
+
+.note-columns-list {
+  margin-top: 20px;
+  margin-left: 20px;
+  overflow-x: auto;
+  display: flex;
+  width: 95%;
+}
+
+.note-column {
+  display: inline-block;
+  vertical-align: top;
+  border: 3px solid #DCDCDC;
+  background-color: #DCDCDC;
+  border-radius: 5px;
+  margin: 10px;
+}

@@ -17,7 +17,7 @@ class Header extends Component {
       <div className="header" style={{backgroundColor: backgroundColor ? backgroundColor : defaultColor}}>
         <div className="left-btn">
           {pathname !== '/home' &&
-            <Link to={`/home`}>На главную страницу</Link>
+            <Link to={`/home`}>Back home</Link>
           }
         </div>
         <div className="title">

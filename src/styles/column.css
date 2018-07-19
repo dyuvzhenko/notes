@@ -1,0 +1,26 @@
+.note-column {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.column-title {
+
+}
+
+.column-title-input {
+  margin-left: 5px;
+  background-color: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  border: 0;
+}
+
+.column-title-input:focus {
+  background-color: white;
+  cursor: text;
+}
+
+.column-card-list {
+
+}
