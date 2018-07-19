@@ -26,7 +26,7 @@ export const createExampleNote = () => {
   testNote.data['columns'] = []
   for (let i = 0; i < columnsLength; i++) {
     testNote.data['columns'].push({
-      title: `Example colums #${i + 1}`,
+      title: `Example column #${i + 1}`,
       cards: []
     })
   }

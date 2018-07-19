@@ -44,3 +44,15 @@ export const validNote = {
     }]
   }
 }
+
+export const emptyColumn = {
+  'title': '',
+  'cards': []
+}
+
+export const emptyCard = {
+  'title': '',
+  'description': '',
+  'labels': [],
+  'messages': []
+}

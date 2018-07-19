@@ -8,6 +8,7 @@ import {
 } from './_constants'
 
 import { history } from '../utils/history'
+import { emptyColumn } from '../utils/note/validData'
 import { getFileByName, rewriteFile, removeFile } from '../utils/files'
 
 export const resetStateCurrent = () => (dispatch) => dispatch({ type: RESET_STATE_CURRENT })
@@ -32,9 +33,7 @@ export const changeBackgroundColor = (colorObj) => (dispatch, getState) => {
   const file = getState().current.data
   const note = {...file,
     data: {...file.data,
-      settings: {...file.data.settings,
-        colorObj
-      }
+      settings: {...file.data.settings, colorObj}
     }
   }
   rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
@@ -43,8 +42,16 @@ export const changeBackgroundColor = (colorObj) => (dispatch, getState) => {
 export const changeTitle = (title) => (dispatch, getState) => {
   const file = getState().current.data
   const note = {...file,
+    data: {...file.data, title}
+  }
+  rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
+}
+
+export const pushNewColumn = () => (dispatch, getState) => {
+  const file = getState().current.data
+  const note = {...file,
     data: {...file.data,
-      title
+      columns: [...file.data.columns, {...emptyColumn, title: 'new'}]
     }
   }
   rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))

@@ -49,7 +49,30 @@
   margin-left: 20px;
   overflow-x: auto;
   display: flex;
-  width: 95%;
+  width: 100%;
+  margin-left: 0;
+  height: calc(100% - 74px); /* bad */
+}
+
+.note-columns-list > div {
+  display: inline-table;
+}
+
+.add-new-column {
+  display: inline-block;
+  background-color: inherit;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 16px;
+  min-width: 200px;
+  margin: 10px;
+}
+
+.add-new-column-wrap {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 2;
 }
 
 .note-column {
