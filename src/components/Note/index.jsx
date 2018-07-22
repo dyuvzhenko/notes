@@ -8,7 +8,7 @@ import ColumnsList from './ColumnsList'
 import {
   getCurrentNote, resetStateCurrent, changeBackgroundColor,
   changeTitle, removeNote, pushNewColumn, changeColumnTitle,
-  saveLabelsDescription, createCard
+  saveLabelsDescription, createCard, changeCard
 } from '../../actions/current'
 
 class Note extends Component {
@@ -44,6 +44,7 @@ class Note extends Component {
           changeColumnTitle={this.props.changeColumnTitle}
           labelsDescription={data.data.settings.labelsDescription}
           createCard={this.props.createCard}
+          changeCard={this.props.changeCard}
         />
       </div>
     )
@@ -58,6 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
   changeBackgroundColor: (colorObj) => dispatch(changeBackgroundColor(colorObj)),
   changeColumnTitle: (columnNum, newTitle) => dispatch(changeColumnTitle(columnNum, newTitle)),
   saveLabelsDescription: (labelsDescription, callback) => dispatch(saveLabelsDescription(labelsDescription, callback)),
+  changeCard: (columnNum, cardNum, card) => dispatch(changeCard(columnNum, cardNum, card)),
   createCard: (columnNum) => dispatch(createCard(columnNum)),
   changeTitle: (title) => dispatch(changeTitle(title)),
   pushNewColumn: () => dispatch(pushNewColumn()),

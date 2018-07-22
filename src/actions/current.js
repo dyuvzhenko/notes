@@ -99,3 +99,10 @@ export const createCard = (columnNum) => (dispatch, getState) => {
   }
   rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
 }
+
+export const changeCard = (columnNum, cardNum, card) => (dispatch, getState) => {
+  const file = getState().current.data
+  let note = JSON.parse(JSON.stringify(file)) /* lol */
+  note.data.columns[columnNum].cards[cardNum] = card
+  rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
+}

@@ -91,9 +91,11 @@ class Column extends Component {
         {this.state.isCardOpen &&
           <CardView
             toggleCardView={this.toggleCardView}
-            cardNum={this.state.selectedNum}
             card={column.cards[this.state.selectedNum]}
             labelsDescription={this.props.labelsDescription}
+            changeCard={this.props.changeCard}
+            columnNum={this.state.columnNum}
+            cardNum={this.state.selectedNum}
           />
         }
       </div>

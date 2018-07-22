@@ -5,7 +5,7 @@ import Column from './Column'
 /* just comfort interlayer */
 export default ({
   columns, labelsDescription, createColumn,
-  changeColumnTitle, createCard
+  changeColumnTitle, createCard, changeCard
 }) => (
   <div className="note-columns-list">
     {columns.map((column, i) =>
@@ -13,6 +13,7 @@ export default ({
         key={i}
         columnNum={i}
         column={column}
+        changeCard={changeCard}
         labelsDescription={labelsDescription}
         changeColumnTitle={changeColumnTitle}
         createCard={createCard}

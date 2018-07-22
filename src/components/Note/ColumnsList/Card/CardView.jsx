@@ -3,13 +3,17 @@ import { Modal, Button } from 'react-bootstrap'
 import showdown from 'showdown'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-// check-circle
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+
 class CardView extends Component {
   constructor(props) {
     super(props)
+    this.updateCard = this.updateCard.bind(this)
+    this.setLabel = this.setLabel.bind(this)
+
     const converter = new showdown.Converter()
     converter.setOption('simpleLineBreaks', true)
+
     this.state = {
       initTitle: props.card.title,
       initDescription: props.card.description,
@@ -20,9 +24,32 @@ class CardView extends Component {
     }
   }
 
+  removeCard() {
+    // this.props.removeCard()
+  }
+
+  updateCard(card) {
+    /* method for all changes (title, description, labels, messages) */
+    const { columnNum, cardNum } = this.props
+    this.props.changeCard(columnNum, cardNum, card)
+  }
+
+  setLabel(selectedLabel) {
+    const { card } = this.props
+    let labels = []
+    if (card.labels.find(e => e.name === selectedLabel.colorObj.name)) { // remove
+      labels = card.labels.filter(e => e.name === selectedLabel.colorObj.name ? null : e)
+    } else { // add
+      labels = [...card.labels, selectedLabel.colorObj]
+    }
+
+    this.updateCard({ ...card, labels })
+  }
+
   render() {
-    const { labelsDescription } = this.props
+    const { card, labelsDescription } = this.props
     const { isDescriptionEditing } = this.state
+    console.log('!', this.props)
     return (
       <Modal show={true} bsSize="large">
         <Modal.Header>
@@ -52,9 +79,11 @@ class CardView extends Component {
             <div className="settings">
               <div className="selected-labels">
                 {labelsDescription.map((e, i) => e.description === '' ? null :
-                  <div key={i} style={{backgroundColor: e.colorObj.color}}>
+                  <div key={i} style={{backgroundColor: e.colorObj.color}} onClick={() => this.setLabel(e)}>
                     <div className="active-label">
-                      {i === 2 && <FontAwesomeIcon icon={faCheckCircle} color="inherit" />}
+                      {card.labels.find(_e => _e.name === e.colorObj.name) &&
+                        <FontAwesomeIcon icon={faCheckCircle} color="inherit" />
+                      }
                     </div>
                     {e.description}
                   </div>
