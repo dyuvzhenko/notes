@@ -17,7 +17,7 @@
   top: 64px;
 }
 
-.note-header-right-panel > button {
+.note-header-right-panel > div > button {
   margin-left: 10px;
 }
 

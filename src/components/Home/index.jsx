@@ -58,8 +58,8 @@ class Home extends Component {
       <div className="home">
         <h4>Home page</h4>
         <div className="home-up-btn">
-          <Button disabled={pending} bsStyle="primary" onClick={this.createExampleNote}>Create example note</Button>
-          <Button disabled={pending} bsStyle="primary" onClick={this.createEmptyNote}>Create empty note</Button>
+          <Button disabled={pending} onClick={this.createExampleNote}>Create example note</Button>
+          <Button disabled={pending} onClick={this.createEmptyNote}>Create empty note</Button>
         </div>
         <br />
         <div className="col-12">

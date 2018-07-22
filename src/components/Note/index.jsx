@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { DropdownButton, MenuItem, Button } from 'react-bootstrap'
 
-import Header from './Header'
+import NoteHeading from './NoteHeading'
 import ColumnsList from './ColumnsList'
 import {
   getCurrentNote, resetStateCurrent, changeBackgroundColor,
@@ -26,7 +26,7 @@ class Note extends Component {
     const { pending, data, removeError } = this.props.current
     return pending ? null : (
       <div className="note" style={{ backgroundColor: data.data.settings.colorObj.color }}>
-        <Header
+        <NoteHeading
           changeTitle={this.props.changeTitle}
           changeBackgroundColor={this.props.changeBackgroundColor}
           currentBackgroundColor={data.data.settings.colorObj.color}

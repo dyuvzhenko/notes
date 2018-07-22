@@ -3,7 +3,10 @@ import { DropdownButton, MenuItem, Modal, Button } from 'react-bootstrap'
 
 import { validBackgroundColors } from '../../../utils/note/validData'
 
-class Header extends Component {
+import ColorSettings from './ColorSettings'
+// LabelSettings
+
+class NoteHeading extends Component {
   constructor(props) {
     super(props)
     this.changeConfirmString = this.changeConfirmString.bind(this)
@@ -79,43 +82,21 @@ class Header extends Component {
           value={titleValue}
         />
         <div className="note-header-right-panel">
-          <DropdownButton style={{backgroundColor: 'white', color: 'black'}}
-            title={'Change background color'}
-            id={`changeColorBtn`}
-            bsStyle={'primary'}
-          >
-            {validBackgroundColors.map((colorObj, i) =>
-              <MenuItem key={i} onClick={() => changeBackgroundColor(colorObj)} style={{backgroundColor: currentBackgroundColor === colorObj.color ? '#e0e0e0' : 'white'}}>
-                {colorObj.name} <div className="note-header-color-example" style={{backgroundColor: colorObj.color}}></div>
-              </MenuItem>
-            )}
-          </DropdownButton>
-          <button className="btn note-remove-btn" onClick={() => this.toggleModal(true)}>Remove this Note</button>
-          <Modal show={isNoteRemoveModalOpen} onHide={() => this.toggleModal(false)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Confirm action</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <div>
-                <h4>Enter string "confirm" to field</h4>
-                <input onChange={this.changeConfirmString} value={confirmString} />
-              </div>
-              {removeNoteErrorMsg}
-            </Modal.Body>
-            <Modal.Footer>
-              <Button
-                bsStyle="danger"
-                onClick={this.props.removeNote}
-                disabled={confirmString !== this.requiredConfirmString}
-              >Delete Note
-              </Button>
-              <Button onClick={() => this.toggleModal(false)}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+          <ColorSettings
+            validBackgroundColors={validBackgroundColors}
+            currentBackgroundColor={currentBackgroundColor}
+            changeBackgroundColor={changeBackgroundColor}
+            isNoteRemoveModalOpen={isNoteRemoveModalOpen}
+            changeConfirmString={this.changeConfirmString}
+            removeNoteErrorMsg={removeNoteErrorMsg}
+            removeNote={this.props.removeNote}
+            toggleModal={this.toggleModal}
+            confirmString={confirmString}
+          />
         </div>
       </div>
     )
   }
 }
 
-export default Header
+export default NoteHeading
