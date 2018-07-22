@@ -56,3 +56,14 @@ export const pushNewColumn = () => (dispatch, getState) => {
   }
   rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
 }
+
+export const changeColumnTitle = (columNum, newTitle) => (dispatch, getState) => {
+  const file = getState().current.data
+  const newColumns = file.data.columns.map((e, i) => i === columNum ? {...e, title: newTitle} : e)
+  const note = {...file,
+    data: {...file.data,
+      columns: newColumns
+    }
+  }
+  rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
+}

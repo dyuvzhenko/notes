@@ -4,7 +4,10 @@ import { DropdownButton, MenuItem, Button } from 'react-bootstrap'
 
 import Header from './Header'
 import ColumnsList from './ColumnsList'
-import { getCurrentNote, resetStateCurrent, changeBackgroundColor, changeTitle, removeNote, pushNewColumn } from '../../actions/current'
+import {
+  getCurrentNote, resetStateCurrent, changeBackgroundColor,
+  changeTitle, removeNote, pushNewColumn, changeColumnTitle
+} from '../../actions/current'
 
 class Note extends Component {
   constructor(props) {
@@ -31,7 +34,11 @@ class Note extends Component {
           removeNoteErrorMsg={removeError}
           title={data.data.title}
         />
-        <ColumnsList columns={data.data.columns} createColumn={this.props.pushNewColumn} />
+        <ColumnsList
+          columns={data.data.columns}
+          createColumn={this.props.pushNewColumn}
+          changeColumnTitle={this.props.changeColumnTitle}
+        />
       </div>
     )
   }
@@ -43,6 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
   resetStateCurrent: () => dispatch(resetStateCurrent()),
   getCurrentNote: (filename) => dispatch(getCurrentNote(filename)),
   changeBackgroundColor: (colorObj) => dispatch(changeBackgroundColor(colorObj)),
+  changeColumnTitle: (columnNum, newTitle) => dispatch(changeColumnTitle(columnNum, newTitle)),
   changeTitle: (title) => dispatch(changeTitle(title)),
   pushNewColumn: () => dispatch(pushNewColumn()),
   removeNote: () => dispatch(removeNote())
