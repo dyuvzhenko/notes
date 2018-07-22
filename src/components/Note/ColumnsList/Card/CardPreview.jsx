@@ -1,7 +1,7 @@
 import React from 'react'
-// showCard
-export default ({ title, labels }) => (
-  <div className="card-preview" onClick={() => null}>
+
+export default ({ title, labels, openCard, cardNum }) => (
+  <div className="card-preview" onClick={() => openCard(true, cardNum)}>
     <div className="label-list">
       {labels.map((label, i) =>
         <div className="label" key={i} style={{backgroundColor: label.color}}></div>

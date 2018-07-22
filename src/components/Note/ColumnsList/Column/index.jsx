@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 
 import CardPreview from '../Card/CardPreview'
-// import CardView from '../Card/CardView'
+import CardView from '../Card/CardView'
 
 class Column extends Component {
   constructor(props) { // {true && <Card />}
@@ -12,11 +12,18 @@ class Column extends Component {
     this.onChangeColumnTitle = this.onChangeColumnTitle.bind(this)
     this.activateInput = this.activateInput.bind(this)
     this.onKeyPress = this.onKeyPress.bind(this)
+
+    /* CardView */
+    this.toggleCardView = this.toggleCardView.bind(this)
     this.state = {
       columnNum: props.columnNum,
       inputColumnTitle: props.column.title || '',
       initColumnTitle: props.column.title,
-      columnTitleIsActivated: false
+      columnTitleIsActivated: false,
+
+      /* CardView */
+      selectedNum: null,
+      isCardOpen: false
     }
   }
 
@@ -53,9 +60,13 @@ class Column extends Component {
     }
   }
 
+  toggleCardView(isOpen, selectedNum = null) {
+    this.setState({ isCardOpen: isOpen, selectedNum })
+  }
+
   render() {
-    const { inputColumnTitle, columnTitleIsActivated } = this.state
     const { column } = this.props
+    const { inputColumnTitle, columnTitleIsActivated } = this.state
     return (
       <div className="note-column">
         <div className="column-title">
@@ -71,12 +82,20 @@ class Column extends Component {
         </div>
         <div className="column-card-list">
           {column.cards.map((card, i) =>
-            <CardPreview key={i} cardNum={i} title={card.title} labels={card.labels} />
+            <CardPreview key={i} cardNum={i} title={card.title} labels={card.labels} openCard={this.toggleCardView} />
           )}
           <div className="create-new-card" onClick={() => this.props.createCard(this.state.columnNum)}>
             + Create new card
           </div>
         </div>
+        {this.state.isCardOpen &&
+          <CardView
+            toggleCardView={this.toggleCardView}
+            cardNum={this.state.selectedNum}
+            card={column.cards[this.state.selectedNum]}
+            labelsDescription={this.props.labelsDescription}
+          />
+        }
       </div>
     )
   }

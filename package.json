@@ -61,12 +61,14 @@
     "react": "^16.1.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.1.1",
+    "react-mde": "^5.7.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "showdown": "^1.8.6"
   },
   "homepage": "./",
   "main": "electron-starter.js",

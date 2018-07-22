@@ -30,3 +30,24 @@
   margin-top: 5px;
   font-size: 15px;
 }
+
+.main-info {
+  width: 100%;
+  display: flex;
+}
+
+.main-info > .description {
+  width: 80%;
+  display: inline-block;
+  background-color: #E6E6E9;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.main-info > .settings {
+  width: 20%;
+  display: inline-block;
+  background-color: #E6E6E9;
+  border-radius: 5px;
+  margin-left: 15px;
+}

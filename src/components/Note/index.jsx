@@ -42,6 +42,7 @@ class Note extends Component {
           columns={data.data.columns}
           createColumn={this.props.pushNewColumn}
           changeColumnTitle={this.props.changeColumnTitle}
+          labelsDescription={data.data.settings.labelsDescription}
           createCard={this.props.createCard}
         />
       </div>

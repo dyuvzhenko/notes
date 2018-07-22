@@ -14,7 +14,6 @@ export const createExampleNote = () => {
 
   /* Set settings */
   testNote.data['settings'] = {
-    // 'color': validBackgroundColors[Math.floor(Math.random() * validBackgroundColors.length)],
     'colorObj': validBackgroundColors[Math.floor(Math.random() * validBackgroundColors.length)],
     'labelsDescription': validLabelColors.map((colorObj, i) => ({
       description: `description #${i + 1}`, colorObj
@@ -32,33 +31,28 @@ export const createExampleNote = () => {
   }
 
   /* Set cards for each column, and messages */
-  const markdownDescription = `
-    ## Markdown is supported
+  const markdownDescription =
+'\n' +
+'# Markdown is supported' +
+'\n -------------' + '\n' +
+'1. **bold item** \n' +
+'2. _monospace item_ \n' +
+'3. \`item\` \n' +
+'- **4 bold point** \n' +
+'- _5 monospace point_ \n' +
+'- \`6 point\` \n' +
+'> quote \n\n' +
+'\`\`\`' + `
+block
+quote
+` + '\`\`\`'
 
-    ======
+  const markdownMessage =
+    '### Example message\n'
+    '======' +
+    '\n' +
+    '**Some** text...  \n'
 
-    1. **bold item**
-    2. _monospace item_
-    3. \`item\`
-
-    - **4 bold point**
-    - _5 monospace point_
-    - \`6 point\`
-
-    > quote
-
-    \`\`\`
-      block
-      quote
-    \`\`\`
-  `
-  const markdownMessage = `
-    ### Example message
-
-    ======
-
-    **Some** text...
-  `
   testNote.data.columns = testNote.data.columns.map((column, i) => {
     const lengthOfCards = columnsLength - i
     let cards = []
