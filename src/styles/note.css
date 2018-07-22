@@ -17,6 +17,10 @@
   top: 64px;
 }
 
+.note-header-right-panel > div {
+  display: inline-block;
+}
+
 .note-header-right-panel > div > button {
   margin-left: 10px;
 }

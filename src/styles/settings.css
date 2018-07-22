@@ -1,0 +1,11 @@
+.settings-label-color {
+  margin-top: 2px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.settings-label-description > input {
+  width: 100%;
+  font-weight: 600;
+}
