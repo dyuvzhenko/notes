@@ -12,10 +12,11 @@ export const validBackgroundColors = [
 ]
 
 export const validLabelColors = [
-  { color: '#0000FF', name: 'Blue' },
-  { color: '#008000', name: 'Green' },
-  { color: '#FFFF00', name: 'Yellow' },
-  { color: '#FF0000', name: 'Red' }
+  { color: '#32CD32', name: 'LimeGreen' },
+  { color: '#6495ED', name: 'CornflowerBlue' },
+  { color: '#00BFFF', name: 'DeepSkyBlue' },
+  { color: '#00CED1', name: 'DarkTurquoise' },
+  { color: '#FF8C00', name: 'DarkOrange' }
 ]
 
 export const validNote = {

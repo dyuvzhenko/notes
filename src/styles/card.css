@@ -34,6 +34,7 @@
 .main-info {
   width: 100%;
   display: flex;
+  min-height: 350px;
 }
 
 .main-info > .description {
@@ -50,4 +51,31 @@
   background-color: #E6E6E9;
   border-radius: 5px;
   margin-left: 15px;
+}
+
+.selected-labels > div {
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 20px;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.selected-labels > div > .active-label {
+  position: absolute;
+  margin-left: 10px;
+}
+
+.settings > .control-buttons > button {
+  margin: 3px;
+  margin-left: 15px;
+}
+
+.card-title {
+  font-size: 30px;
+  font-weight: 700;
 }
