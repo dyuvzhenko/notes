@@ -67,7 +67,7 @@ class Home extends Component {
           {all.map((note, i) =>
             <div className="col-6" key={i}>
               <div className="home-note-block"
-                style={{backgroundColor: note.colorObj.color !== null ? note.colorObj.color : defaultBackgroundColor}}
+                style={{backgroundColor: note.colorObj !== null ? note.colorObj.color : defaultBackgroundColor}}
                 onClick={() => this.goToNotePage(note)}
                 disabled={note.title === null}
               >

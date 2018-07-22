@@ -23,6 +23,9 @@ export const getNotesList = () => (dispatch) => {
       let result = null
       try {
         const _result = JSON.parse(file)
+        const title = _result.data.title
+        const colorObj = _result.data.settings.colorObj.color
+        const time = getTimeString(filename)
         // TODO: помимо parse, здесь должна быть функция валидации абсолютно всех полей. Если будет не соответствие - кидаем ошибку.
         result = _result
       } catch (err) {
