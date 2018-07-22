@@ -25,10 +25,10 @@ export const validNote = {
     'title': '',
     'settings': {
       'colorObj': validBackgroundColors[0],
-      'labelsDescription': [{
-        'colorObj': validLabelColors[0], // like unique id
-        'description': ''
-      }]
+      'labelsDescription': validLabelColors.map(e => ({
+        description: '',
+        colorObj: e  // like unique id
+      }))
     },
     'columns': [{
       'title': '',

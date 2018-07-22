@@ -3,7 +3,7 @@ import { DropdownButton, MenuItem, Modal, Button } from 'react-bootstrap'
 
 import ColorSettings from './ColorSettings'
 import LabelSettings from './LabelSettings'
-// RemoveNoteModal
+import RemoveNoteModal from './RemoveNoteModal'
 
 class NoteHeading extends Component {
   constructor(props) {
@@ -76,12 +76,10 @@ class NoteHeading extends Component {
   }
 
   render() {
-    const { changeBackgroundColor, currentBackgroundColor, removeNoteErrorMsg } = this.props // remove
-    const { titleValue, titleIsActivated, confirmString, isNoteRemoveModalOpen } = this.state // remove
     return (
       <div className="note-header">
         <input
-          className={titleIsActivated ?
+          className={this.state.titleIsActivated ?
             'note-header-active-input-title' :
             'note-header-inactive-input-title'
           }
@@ -90,24 +88,26 @@ class NoteHeading extends Component {
           ref={c => this.inputTitle = c}
           onChange={this.onChangeTitle}
           onKeyPress={this.onKeyPress}
-          value={titleValue}
+          value={this.state.titleValue}
         />
         <div className="note-header-right-panel">
           <ColorSettings
-            currentBackgroundColor={currentBackgroundColor}
-            changeBackgroundColor={changeBackgroundColor}
-            isNoteRemoveModalOpen={isNoteRemoveModalOpen}
-            changeConfirmString={this.changeConfirmString}
-            removeNoteErrorMsg={removeNoteErrorMsg}
-            removeNote={this.props.removeNote}
-            toggleModal={this.toggleModal}
-            confirmString={confirmString}
+            currentBackgroundColor={this.props.currentBackgroundColor}
+            changeBackgroundColor={this.props.changeBackgroundColor}
           />
           <LabelSettings
             toggleLabelSettingsModal={this.toggleLabelSettingsModal}
             isLabelSettingsOpen={this.state.isLabelSettingsOpen}
             labelsDescription={this.props.currentLabelsSettings}
             saveLabelsDescription={this.props.saveLabelsDescription}
+          />
+          <RemoveNoteModal
+            confirmString={this.state.confirmString}
+            removeNoteErrorMsg={this.props.removeNoteErrorMsg}
+            isNoteRemoveModalOpen={this.state.isNoteRemoveModalOpen}
+            changeConfirmString={this.changeConfirmString}
+            removeNote={this.props.removeNote}
+            toggleModal={this.toggleModal}
           />
         </div>
       </div>

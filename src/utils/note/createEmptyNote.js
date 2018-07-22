@@ -1,3 +1,5 @@
+import { validLabelColors } from './validData'
+
 export const createEmptyNote = () => ({
   '_initDate': Date.now(),
   '_lastUpdate': Date.now(),
@@ -8,7 +10,10 @@ export const createEmptyNote = () => ({
         'color': null,
         'name': null
       },
-      'labelsDescription': []
+      'labelsDescription': validLabelColors.map(e => ({
+        description: '',
+        colorObj: e
+      }))
     },
     'columns': []
   }
