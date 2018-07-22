@@ -16,7 +16,17 @@ class Header extends Component {
       confirmString: '',
       isNoteRemoveModalOpen: false,
       titleValue: props.title || '',
-      titleIsActivated: false
+      titleIsActivated: false,
+      initTitle: props.title
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.title !== this.state.initTitle) {
+      this.setState({
+        initTitle: nextProps.title,
+        titleValue: nextProps.title
+      })
     }
   }
 
@@ -25,7 +35,10 @@ class Header extends Component {
   }
 
   activateInput(isActivated) {
-    this.setState({ titleIsActivated: isActivated })
+    this.setState({
+      titleValue: this.state.initTitle,
+      titleIsActivated: isActivated
+    })
     !isActivated && this.inputTitle.blur()
   }
 
