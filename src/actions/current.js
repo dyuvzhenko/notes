@@ -8,7 +8,7 @@ import {
 } from './_constants'
 
 import { history } from '../utils/history'
-import { emptyColumn } from '../utils/note/validData'
+import { emptyColumn, emptyCard } from '../utils/note/validData'
 import { getFileByName, rewriteFile, removeFile } from '../utils/files'
 
 export const resetStateCurrent = () => (dispatch) => dispatch({ type: RESET_STATE_CURRENT })
@@ -57,9 +57,9 @@ export const pushNewColumn = () => (dispatch, getState) => {
   rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
 }
 
-export const changeColumnTitle = (columNum, newTitle) => (dispatch, getState) => {
+export const changeColumnTitle = (columnNum, newTitle) => (dispatch, getState) => {
   const file = getState().current.data
-  const newColumns = file.data.columns.map((e, i) => i === columNum ? {...e, title: newTitle} : e)
+  const newColumns = file.data.columns.map((e, i) => i === columnNum ? {...e, title: newTitle} : e)
   const note = {...file,
     data: {...file.data,
       columns: newColumns
@@ -85,4 +85,17 @@ export const saveLabelsDescription = (labelsDescription, callback) => (dispatch,
       callback(false)
     }
   })
+}
+
+export const createCard = (columnNum) => (dispatch, getState) => {
+  const file = getState().current.data
+  let card = JSON.parse(JSON.stringify(emptyCard))
+  card.title = 'new'
+  const newColumns = file.data.columns.map((e, i) => i === columnNum ? {...e, cards: [...e.cards, card]} : e)
+  const note = {...file,
+    data: {...file.data,
+      columns: newColumns
+    }
+  }
+  rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
 }

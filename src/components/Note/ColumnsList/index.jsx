@@ -3,10 +3,10 @@ import React from 'react'
 import Column from './Column'
 
 /* just comfort interlayer */
-export default ({ columns, createColumn, changeColumnTitle }) => (
+export default ({ columns, createColumn, changeColumnTitle, createCard }) => (
   <div className="note-columns-list">
     {columns.map((column, i) =>
-      <Column key={i} columnNum={i} column={column} changeColumnTitle={changeColumnTitle} />
+      <Column key={i} columnNum={i} column={column} changeColumnTitle={changeColumnTitle} createCard={createCard} />
     )}
     <div className="add-new-column" onClick={createColumn}>
       <div className="add-new-column-wrap">

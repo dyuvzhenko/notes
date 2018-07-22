@@ -73,6 +73,9 @@ class Column extends Component {
           {column.cards.map((card, i) =>
             <CardPreview key={i} cardNum={i} title={card.title} labels={card.labels} />
           )}
+          <div className="create-new-card" onClick={() => this.props.createCard(this.state.columnNum)}>
+            + Create new card
+          </div>
         </div>
       </div>
     )
