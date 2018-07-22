@@ -1,26 +1,33 @@
 import React, { Component } from 'react'
 import { DropdownButton, MenuItem, Modal, Button } from 'react-bootstrap'
 
-import { validBackgroundColors } from '../../../utils/note/validData'
-
 import ColorSettings from './ColorSettings'
-// LabelSettings
+import LabelSettings from './LabelSettings'
+// RemoveNoteModal
 
 class NoteHeading extends Component {
   constructor(props) {
     super(props)
+    /* ColorSettings */
     this.changeConfirmString = this.changeConfirmString.bind(this)
     this.onChangeTitle = this.onChangeTitle.bind(this)
     this.activateInput = this.activateInput.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
     this.onKeyPress = this.onKeyPress.bind(this)
-    this.requiredConfirmString = 'confirm'
+
+    /* LabelSettings */
+    this.toggleLabelSettingsModal = this.toggleLabelSettingsModal.bind(this)
+
     this.state = {
+      /* ColorSettings */
       confirmString: '',
       isNoteRemoveModalOpen: false,
       titleValue: props.title || '',
       titleIsActivated: false,
-      initTitle: props.title
+      initTitle: props.title,
+
+      /* LabelSettings */
+      isLabelSettingsOpen: false
     }
   }
 
@@ -49,6 +56,10 @@ class NoteHeading extends Component {
     this.setState({ isNoteRemoveModalOpen: isOpen })
   }
 
+  toggleLabelSettingsModal(isOpen) {
+    this.setState({ isLabelSettingsOpen: isOpen })
+  }
+
   changeConfirmString(e) {
     this.setState({ confirmString: e.target.value })
   }
@@ -65,8 +76,8 @@ class NoteHeading extends Component {
   }
 
   render() {
-    const { changeBackgroundColor, currentBackgroundColor, removeNoteErrorMsg } = this.props
-    const { titleValue, titleIsActivated, confirmString, isNoteRemoveModalOpen } = this.state
+    const { changeBackgroundColor, currentBackgroundColor, removeNoteErrorMsg } = this.props // remove
+    const { titleValue, titleIsActivated, confirmString, isNoteRemoveModalOpen } = this.state // remove
     return (
       <div className="note-header">
         <input
@@ -83,7 +94,6 @@ class NoteHeading extends Component {
         />
         <div className="note-header-right-panel">
           <ColorSettings
-            validBackgroundColors={validBackgroundColors}
             currentBackgroundColor={currentBackgroundColor}
             changeBackgroundColor={changeBackgroundColor}
             isNoteRemoveModalOpen={isNoteRemoveModalOpen}
@@ -92,6 +102,12 @@ class NoteHeading extends Component {
             removeNote={this.props.removeNote}
             toggleModal={this.toggleModal}
             confirmString={confirmString}
+          />
+          <LabelSettings
+            toggleLabelSettingsModal={this.toggleLabelSettingsModal}
+            isLabelSettingsOpen={this.state.isLabelSettingsOpen}
+            labelsDescription={this.props.currentLabelsSettings}
+            saveLabelsDescription={this.props.saveLabelsDescription}
           />
         </div>
       </div>

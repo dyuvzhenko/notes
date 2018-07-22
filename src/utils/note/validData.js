@@ -25,7 +25,7 @@ export const validNote = {
     'title': '',
     'settings': {
       'colorObj': validBackgroundColors[0],
-      'label-description': [{
+      'labelsDescription': [{
         'colorObj': validLabelColors[0], // like unique id
         'description': ''
       }]

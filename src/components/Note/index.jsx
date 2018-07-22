@@ -4,9 +4,11 @@ import { DropdownButton, MenuItem, Button } from 'react-bootstrap'
 
 import NoteHeading from './NoteHeading'
 import ColumnsList from './ColumnsList'
+
 import {
   getCurrentNote, resetStateCurrent, changeBackgroundColor,
-  changeTitle, removeNote, pushNewColumn, changeColumnTitle
+  changeTitle, removeNote, pushNewColumn, changeColumnTitle,
+  saveLabelsDescription
 } from '../../actions/current'
 
 class Note extends Component {
@@ -30,6 +32,8 @@ class Note extends Component {
           changeTitle={this.props.changeTitle}
           changeBackgroundColor={this.props.changeBackgroundColor}
           currentBackgroundColor={data.data.settings.colorObj.color}
+          currentLabelsSettings={data.data.settings.labelsDescription}
+          saveLabelsDescription={this.props.saveLabelsDescription}
           removeNote={this.props.removeNote}
           removeNoteErrorMsg={removeError}
           title={data.data.title}
@@ -51,6 +55,7 @@ const mapDispatchToProps = (dispatch) => ({
   getCurrentNote: (filename) => dispatch(getCurrentNote(filename)),
   changeBackgroundColor: (colorObj) => dispatch(changeBackgroundColor(colorObj)),
   changeColumnTitle: (columnNum, newTitle) => dispatch(changeColumnTitle(columnNum, newTitle)),
+  saveLabelsDescription: (labelsDescription, callback) => dispatch(saveLabelsDescription(labelsDescription, callback)),
   changeTitle: (title) => dispatch(changeTitle(title)),
   pushNewColumn: () => dispatch(pushNewColumn()),
   removeNote: () => dispatch(removeNote())

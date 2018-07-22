@@ -67,3 +67,22 @@ export const changeColumnTitle = (columNum, newTitle) => (dispatch, getState) =>
   }
   rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
 }
+
+export const saveLabelsDescription = (labelsDescription, callback) => (dispatch, getState) => {
+  const file = getState().current.data
+  const note = {...file,
+    data: {...file.data,
+      settings: {...file.data.settings,
+        labelsDescription
+      }
+    }
+  }
+  rewriteFile(note, (file, filename) => {
+    if (!file || !filename) {
+      callback(true)
+    } else {
+      dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename })
+      callback(false)
+    }
+  })
+}

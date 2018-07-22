@@ -20,8 +20,12 @@ export const rewriteFile = (file, callback) => {
       fs.unlink(`./app-data/note-${oldTimeStamp}.json`, (err) => {
         if (!err) {
           callback(newFile, newFileName)
+        } else {
+          callback(null)
         }
       })
+    } else {
+      callback(null)
     }
   })
 }

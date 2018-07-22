@@ -8,7 +8,7 @@ export const createEmptyNote = () => ({
         'color': null,
         'name': null
       },
-      'label-description': []
+      'labelsDescription': []
     },
     'columns': []
   }

@@ -5,8 +5,8 @@ import { validBackgroundColors } from '../../../utils/note/validData'
 const requiredConfirmString = 'confirm'
 
 export default ({
-  validBackgroundColors, currentBackgroundColor, changeBackgroundColor,
   toggleModal, isNoteRemoveModalOpen, removeNote, removeNoteErrorMsg,
+  currentBackgroundColor, changeBackgroundColor,
   changeConfirmString, confirmString
 }) => (
   <div>

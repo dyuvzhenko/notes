@@ -16,7 +16,7 @@ export const createExampleNote = () => {
   testNote.data['settings'] = {
     // 'color': validBackgroundColors[Math.floor(Math.random() * validBackgroundColors.length)],
     'colorObj': validBackgroundColors[Math.floor(Math.random() * validBackgroundColors.length)],
-    'label-description': validLabelColors.map((colorObj, i) => ({
+    'labelsDescription': validLabelColors.map((colorObj, i) => ({
       description: `description #${i + 1}`, colorObj
     }))
   }
