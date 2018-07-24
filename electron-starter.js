@@ -14,8 +14,8 @@ let mainWindow;
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-      minWidth: 1400,
-      width: 1400,
+      minWidth: 800,
+      width: 800,
       height: 600
     });
 
@@ -27,7 +27,7 @@ function createWindow() {
     });
     mainWindow.loadURL(startUrl);
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
