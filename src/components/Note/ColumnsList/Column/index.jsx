@@ -29,8 +29,8 @@ class Column extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.column.cards.length !== this.state.initColumn) {
-      this.setState({ selectedNum: null, isCardOpen: false })
+    if (nextProps.column.cards.length !== this.state.initColumn.cards.length) {
+      this.setState({ selectedNum: null, isCardOpen: false, initColumn: nextProps.column })
     }
     if (nextProps.column.title !== this.state.initColumnTitle) {
       this.setState({

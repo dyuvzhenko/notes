@@ -12,18 +12,31 @@ class CardView extends Component {
     this.updateCard = this.updateCard.bind(this)
     this.setLabel = this.setLabel.bind(this)
 
+    this.onChangeCardTitle = this.onChangeCardTitle.bind(this)
+    this.activateInput = this.activateInput.bind(this)
+    this.onKeyPress = this.onKeyPress.bind(this)
+
     const converter = new showdown.Converter()
     converter.setOption('simpleLineBreaks', true)
 
     this.state = {
-      initTitle: props.card.title,
-      inputTitle: props.card.title || '',
-      initDescription: props.card.description,
-      inputDescription: props.card.description || '',
+      initCardTitle: props.card.title,
+      inputCardTitle: props.card.title || '',
+      initCardDescription: props.card.description,
+      inputCardDescription: props.card.description || '',
       showedText: converter.makeHtml(props.card.description),
 
       isTitleEditing: false,
       isDescriptionEditing: false
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.card.title !== this.state.initCardTitle) {
+      this.setState({
+        initCardTitle: nextProps.card.title,
+        inputCardTitle: nextProps.card.title
+      })
     }
   }
 
@@ -50,6 +63,29 @@ class CardView extends Component {
     this.updateCard({ ...card, labels })
   }
 
+  activateInput(isActivated) {
+    this.setState({
+      inputCardTitle: this.state.initCardTitle,
+      isTitleEditing: isActivated
+    })
+    !isActivated && this.inputCardTitle.blur()
+  }
+
+  onKeyPress(e) {
+    if (e.key === 'Enter') {
+      if (this.state.inputCardTitle === '') {
+        e.preventDefault()
+      } else {
+        this.activateInput(false)
+        this.updateCard({ ...this.props.card, title: this.state.inputCardTitle })
+      }
+    }
+  }
+
+  onChangeCardTitle(e) {
+    this.setState({ inputCardTitle: e.target.value })
+  }
+
   render() {
     const { card, labelsDescription } = this.props
     const { isDescriptionEditing } = this.state
@@ -57,9 +93,15 @@ class CardView extends Component {
       <Modal show={true} bsSize="large">
         <Modal.Header>
           <Modal.Title>
-            <span className="card-title">
-              {this.state.initTitle}
-            </span>
+            <input
+              className={'card-title ' + (this.state.isTitleEditing ? '' : 'active')}
+              onFocus={() => this.activateInput(true)}
+              onBlur={() => this.activateInput(false)}
+              ref={c => this.inputCardTitle = c}
+              onChange={this.onChangeCardTitle}
+              onKeyPress={this.onKeyPress}
+              value={this.state.inputCardTitle}
+            />
             <div style={{float: 'right'}}>
               <Button bsStyle="danger" onClick={() => this.props.toggleCardView(false)}>
                 Close

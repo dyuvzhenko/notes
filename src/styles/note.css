@@ -67,6 +67,7 @@
 
 .note-columns-list > div {
   display: inline-table;
+  width: 220px;
 }
 
 .add-new-column {
