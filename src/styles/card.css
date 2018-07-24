@@ -51,6 +51,14 @@
   padding: 10px;
 }
 
+.main-info > .description-edit {
+  width: 80%;
+  display: inline-block;
+  background-color: white !important;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 .main-info > .settings {
   width: 20%;
   display: inline-block;

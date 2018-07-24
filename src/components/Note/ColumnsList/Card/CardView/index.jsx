@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import ReactMde from 'react-mde'
 import showdown from 'showdown'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,6 +17,11 @@ class CardView extends Component {
     this.activateInput = this.activateInput.bind(this)
     this.onKeyPress = this.onKeyPress.bind(this)
 
+    this.toggleDescription = this.toggleDescription.bind(this)
+    this.generateMarkdownPreview = this.generateMarkdownPreview.bind(this)
+    this.onChangeCardDescription = this.onChangeCardDescription.bind(this)
+    this.saveDescription = this.saveDescription.bind(this)
+
     const converter = new showdown.Converter()
     converter.setOption('simpleLineBreaks', true)
 
@@ -23,8 +29,10 @@ class CardView extends Component {
       initCardTitle: props.card.title,
       inputCardTitle: props.card.title || '',
       initCardDescription: props.card.description,
-      inputCardDescription: props.card.description || '',
+      inputCardDescription: null,
+
       showedText: converter.makeHtml(props.card.description),
+      converter: converter,
 
       isTitleEditing: false,
       isDescriptionEditing: false
@@ -36,6 +44,14 @@ class CardView extends Component {
       this.setState({
         initCardTitle: nextProps.card.title,
         inputCardTitle: nextProps.card.title
+      })
+    }
+    if (nextProps.card.description !== this.state.initCardDescription) {
+      this.setState({
+        initCardDescription: nextProps.card.description,
+        showedText: this.state.converter.makeHtml(nextProps.card.description),
+        isDescriptionEditing: false,
+        inputCardDescription: null
       })
     }
   }
@@ -86,6 +102,26 @@ class CardView extends Component {
     this.setState({ inputCardTitle: e.target.value })
   }
 
+  generateMarkdownPreview(markdown) {
+    return this.state.converter.makeHtml(markdown);
+  }
+
+  toggleDescription() {
+    if (this.state.isDescriptionEditing) {
+      this.setState({ isDescriptionEditing: false, inputCardDescription: null })
+    } else {
+      this.setState({ isDescriptionEditing: true, inputCardDescription: {markdown: this.state.initCardDescription} })
+    }
+  }
+
+  onChangeCardDescription(state) {
+    this.setState({ inputCardDescription: state })
+  }
+
+  saveDescription() {
+    this.updateCard({ ...this.props.card, description: this.state.inputCardDescription.markdown })
+  }
+
   render() {
     const { card, labelsDescription } = this.props
     const { isDescriptionEditing } = this.state
@@ -112,12 +148,17 @@ class CardView extends Component {
 
         <Modal.Body>
           <div className="main-info">
-            <div className="description">
+            <div className={!isDescriptionEditing ? 'description' : 'description-edit'}>
               {
                 !isDescriptionEditing ? (
                   <div dangerouslySetInnerHTML={{__html: this.state.showedText}} />
                 ) : (
-                  <div>...</div>
+                  <ReactMde
+                    layout="vertical"
+                    onChange={this.onChangeCardDescription}
+                    editorState={this.state.inputCardDescription}
+                    generateMarkdownPreview={this.generateMarkdownPreview}
+                  />
                 )
               }
             </div>
@@ -137,11 +178,11 @@ class CardView extends Component {
               <div className="control-buttons">
                 {isDescriptionEditing ? (
                   <div>
-                    <Button bsStyle="danger">Return</Button>
-                    <Button bsStyle="success">Save changes</Button>
+                    <Button bsStyle="danger" onClick={this.toggleDescription}>Return</Button>
+                    <Button bsStyle="success" onClick={this.saveDescription}>Save changes</Button>
                   </div>
                 ) : (
-                  <Button bsStyle="info">Edit description</Button>
+                  <Button bsStyle="info" onClick={this.toggleDescription}>Edit description</Button>
                 )}
                 {!isDescriptionEditing &&
                   <Button bsStyle="danger" onClick={this.removeCard}>
