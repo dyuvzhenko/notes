@@ -16,6 +16,7 @@ class Column extends Component {
     /* CardView */
     this.toggleCardView = this.toggleCardView.bind(this)
     this.state = {
+      initColumn: props.column,
       columnNum: props.columnNum,
       inputColumnTitle: props.column.title || '',
       initColumnTitle: props.column.title,
@@ -28,6 +29,9 @@ class Column extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.column.cards.length !== this.state.initColumn) {
+      this.setState({ selectedNum: null, isCardOpen: false })
+    }
     if (nextProps.column.title !== this.state.initColumnTitle) {
       this.setState({
         initColumnTitle: nextProps.column.title,
@@ -94,6 +98,7 @@ class Column extends Component {
             card={column.cards[this.state.selectedNum]}
             labelsDescription={this.props.labelsDescription}
             changeCard={this.props.changeCard}
+            removeCard={this.props.removeCard}
             columnNum={this.state.columnNum}
             cardNum={this.state.selectedNum}
           />

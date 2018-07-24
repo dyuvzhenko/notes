@@ -106,3 +106,16 @@ export const changeCard = (columnNum, cardNum, card) => (dispatch, getState) => 
   note.data.columns[columnNum].cards[cardNum] = card
   rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
 }
+
+export const removeCard = (columnNum, cardNum) => (dispatch, getState) => {
+  const file = getState().current.data
+  const newColumns = file.data.columns.map((e, i) => i !== columnNum ? e : {
+    ...e, cards: e.cards.filter((_e, _i) => _i !== cardNum)
+  })
+  const note = {...file,
+    data: {...file.data,
+      columns: newColumns
+    }
+  }
+  rewriteFile(note, (file, filename) => dispatch({ type: UPDATE_CURRENT_NOTE, data: file, filename }))
+}

@@ -8,6 +8,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 class CardView extends Component {
   constructor(props) {
     super(props)
+    this.removeCard = this.removeCard.bind(this)
     this.updateCard = this.updateCard.bind(this)
     this.setLabel = this.setLabel.bind(this)
 
@@ -25,7 +26,8 @@ class CardView extends Component {
   }
 
   removeCard() {
-    // this.props.removeCard()
+    const { columnNum, cardNum } = this.props
+    this.props.removeCard(columnNum, cardNum)
   }
 
   updateCard(card) {
@@ -95,7 +97,7 @@ class CardView extends Component {
                     <Button bsStyle="info">Show description</Button> :
                     <Button bsStyle="info">Edit description</Button>
                 }
-                <Button bsStyle="danger">Delete this card</Button>
+                <Button bsStyle="danger" onClick={this.removeCard}>Delete this card</Button>
               </div>
             </div>
           </div>

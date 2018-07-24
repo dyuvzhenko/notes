@@ -4,8 +4,9 @@ import Column from './Column'
 
 /* just comfort interlayer */
 export default ({
+  createCard, changeCard, removeCard,
   columns, labelsDescription, createColumn,
-  changeColumnTitle, createCard, changeCard
+  changeColumnTitle
 }) => (
   <div className="note-columns-list">
     {columns.map((column, i) =>
@@ -17,6 +18,7 @@ export default ({
         labelsDescription={labelsDescription}
         changeColumnTitle={changeColumnTitle}
         createCard={createCard}
+        removeCard={removeCard}
       />
     )}
     <div className="add-new-column" onClick={createColumn}>
