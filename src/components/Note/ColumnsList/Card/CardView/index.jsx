@@ -17,7 +17,9 @@ class CardView extends Component {
 
     this.state = {
       initTitle: props.card.title,
+      inputTitle: props.card.title || '',
       initDescription: props.card.description,
+      inputDescription: props.card.description || '',
       showedText: converter.makeHtml(props.card.description),
 
       isTitleEditing: false,
@@ -51,7 +53,6 @@ class CardView extends Component {
   render() {
     const { card, labelsDescription } = this.props
     const { isDescriptionEditing } = this.state
-    console.log('!', this.props)
     return (
       <Modal show={true} bsSize="large">
         <Modal.Header>
@@ -92,12 +93,19 @@ class CardView extends Component {
                 )}
               </div>
               <div className="control-buttons">
-                {
-                  isDescriptionEditing ?
-                    <Button bsStyle="info">Show description</Button> :
-                    <Button bsStyle="info">Edit description</Button>
+                {isDescriptionEditing ? (
+                  <div>
+                    <Button bsStyle="danger">Return</Button>
+                    <Button bsStyle="success">Save changes</Button>
+                  </div>
+                ) : (
+                  <Button bsStyle="info">Edit description</Button>
+                )}
+                {!isDescriptionEditing &&
+                  <Button bsStyle="danger" onClick={this.removeCard}>
+                    Delete this card
+                  </Button>
                 }
-                <Button bsStyle="danger" onClick={this.removeCard}>Delete this card</Button>
               </div>
             </div>
           </div>

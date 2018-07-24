@@ -74,9 +74,20 @@
   margin-left: 10px;
 }
 
+.settings > .control-buttons {
+  margin-top: 30px;
+}
+
 .settings > .control-buttons > button {
-  margin: 3px;
-  margin-left: 15px;
+  display: block;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.settings > .control-buttons > div > button {
+  display: block;
+  margin-top: 5px;
+  width: 100%;
 }
 
 .card-title {
