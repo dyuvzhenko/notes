@@ -30,7 +30,7 @@ export const createExampleNote = () => {
     })
   }
 
-  /* Set cards for each column, and messages */
+  /* Set cards for each column */
   const markdownDescription =
 '\n' +
 '# Markdown is supported' +
@@ -47,12 +47,6 @@ block
 quote
 ` + '\`\`\`'
 
-  const markdownMessage =
-    '### Example message\n'
-    '======' +
-    '\n' +
-    '**Some** text...  \n'
-
   testNote.data.columns = testNote.data.columns.map((column, i) => {
     const lengthOfCards = columnsLength - i
     let cards = []
@@ -60,11 +54,7 @@ quote
       cards.push({
         title: `Example card #${i + 1}`,
         description: markdownDescription,
-        labels: [validLabelColors[Math.floor(Math.random() * validLabelColors.length)]],
-        messages: [
-          { date: Date.now(), text: markdownMessage },
-          { date: Date.now(), text: markdownMessage }
-        ]
+        labels: [validLabelColors[Math.floor(Math.random() * validLabelColors.length)]]
       })
     }
     return { ...column, cards }

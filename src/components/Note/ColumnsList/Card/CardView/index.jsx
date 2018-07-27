@@ -62,7 +62,7 @@ class CardView extends Component {
   }
 
   updateCard(card) {
-    /* method for all changes (title, description, labels, messages) */
+    /* method for all changes (title, description, labels) */
     const { columnNum, cardNum } = this.props
     this.props.changeCard(columnNum, cardNum, card)
   }

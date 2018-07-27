@@ -36,11 +36,7 @@ export const validNote = {
       'cards': [{
         'title': '',
         'description': '',
-        'labels': [validLabelColors[0], validLabelColors[1]],
-        'messages': [{
-          'text': '',
-          'date': ''
-        }]
+        'labels': [validLabelColors[0], validLabelColors[1]]
       }]
     }]
   }
@@ -54,6 +50,5 @@ export const emptyColumn = {
 export const emptyCard = {
   'title': '',
   'description': '',
-  'labels': [],
-  'messages': []
+  'labels': []
 }
