@@ -20,8 +20,8 @@ export const validLabelColors = [
 ]
 
 export const validNote = {
-  '_initDate': '',
-  '_lastUpdate': '',
+  '_initDate': 0,
+  '_lastUpdate': 0,
   'data': {
     'title': '',
     'settings': {
