@@ -3,8 +3,8 @@ const path = require('path')
 const fs = require('fs')
 
 const options = {
-  name: 'notebook-app',
-  platform: 'win32',
+  name: 'notes-app',
+  platform: 'win32', // 'linux' or 'win32'
   arch: 'x64', // 'x64' or 'ia32'
   dir : __dirname,
   overwrite: true,
