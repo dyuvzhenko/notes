@@ -70,9 +70,9 @@ class CardView extends Component {
   setLabel(selectedLabel) {
     const { card } = this.props
     let labels = []
-    if (card.labels.find(e => e.name === selectedLabel.colorObj.name)) { // remove
+    if (card.labels.find(e => e.name === selectedLabel.colorObj.name)) { // remove method
       labels = card.labels.filter(e => e.name === selectedLabel.colorObj.name ? null : e)
-    } else { // add
+    } else { // add method
       labels = [...card.labels, selectedLabel.colorObj]
     }
 

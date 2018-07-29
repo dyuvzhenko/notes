@@ -20,11 +20,10 @@ export const getNotesList = () => (dispatch) => {
     filenames = sortDesc(filenames)
     const all = filenames.map((filename, index) => {
       const file = fs.readFileSync(path.join(config.pathToNotesData, filename), 'utf-8')
-      // const file = getFileByName(filename)
       let result = null
       try {
         const _result = JSON.parse(file)
-        if(!isNoteValid(_result)) { // всё запихнуть в isNoteValed..?
+        if(!isNoteValid(_result)) {
           throw 'Error!'
         } else {
           result = _result
@@ -32,7 +31,6 @@ export const getNotesList = () => (dispatch) => {
         const title = _result.data.title
         const colorObj = _result.data.settings.colorObj.color
         const time = getTimeString(filename)
-        // TODO: помимо parse, здесь должна быть функция валидации абсолютно всех полей. Если будет не соответствие - кидаем ошибку.
         result = _result
       } catch (err) {
         // console.log('Error!', err)

@@ -7,7 +7,7 @@ import CardPreview from '../Card/CardPreview'
 import CardView from '../Card/CardView'
 
 class Column extends Component {
-  constructor(props) { // {true && <Card />}
+  constructor(props) {
     super(props)
     this.onChangeColumnTitle = this.onChangeColumnTitle.bind(this)
     this.activateInput = this.activateInput.bind(this)
